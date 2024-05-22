@@ -2,32 +2,135 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*,
+*::before,
+*::after {
+  @apply p-0 m-0 box-border;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-codGray text-demoSmoke;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* FONTS */
+@font-face {
+  font-family: "PloySans-Neutral";
+  src: url("/public/fonts/PolySans-Neutral.otf") format("opentype");
+}
+
+.font-sans-neutral {
+  font-family: "PloySans-Neutral", sans-serif;
+}
+
+/* DEFAULTS */
+.default__p {
+  font-size: clamp(12px, 1.1vw, 64px);
+}
+.default__button {
+  @apply flex items-center gap-3 border-2 border-hardLime rounded-full px-6 py-4 hover:bg-hardLime hover:text-codGray transition-colors duration-300;
+}
+.button__icon {
+  font-size: clamp(24px, 1.4vw, 120px);
+}
+/* HEADER */
+.header__cta {
+  @apply flex items-center fixed top-4 lg:top-8 right-4 lg:right-8 py-3 px-5 bg-hardLime rounded-full;
+}
+.nav__link {
+  @apply uppercase text-sm text-codGray relative z-10;
+}
+.menu__btn {
+  @apply w-24 h-10 bg-hardLime rounded-full relative overflow-hidden;
+}
+.menu__btn__slider {
+  @apply relative;
+}
+.menu__btn__inner {
+  @apply flex items-center justify-center uppercase h-full w-full text-codGray;
+}
+.menu__btn__inner:nth-of-type(2) {
+  @apply absolute top-full bg-demoSmoke;
+}
+
+/* HERO */
+h1 {
+  @apply tracking-tighter leading-none;
+  font-size: clamp(1.5rem, 7vw, 500px);
+}
+.hero__brackets {
+  @apply font-extralight leading-none;
+  font-size: clamp(4rem, 6vw, 500px);
+}
+.hero__p {
+  @apply leading-snug;
+  font-size: clamp(14px, 1.2vw, 500px);
+}
+.hero__cta__text {
+  font-size: clamp(1rem, 1.4vw, 500px);
+}
+.hero__cta__icon {
+  font-size: clamp(24px, 2vw, 500px);
+}
+.header__cta__icon {
+  font-size: clamp(24px, 1.2vw, 500px);
+}
+
+/* TUTORIALS */
+.embla {
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 auto;
+  min-width: 0;
+  margin-right: 6%;
+  margin-left: 6%;
+}
+.embla__buttons {
+  @apply w-full flex justify-end gap-4 py-8 px-[10%];
+}
+.embla__prev,
+.embla__next {
+  @apply rounded-full border-2 border-demoSmoke p-3 hover:bg-demoSmoke hover:text-codGray transition-colors duration-300;
+}
+.video__container {
+  @apply relative h-[46vh] w-[52vw] overflow-hidden;
+}
+.video {
+  @apply absolute w-full h-full;
+}
+/* .video__container,
+.video__overlay {
+  @apply absolute w-full h-full mix-blend-screen;
+} */
+.video__blocks {
+  @apply absolute w-full h-full flex justify-between content-between;
+  flex-flow: row wrap;
+}
+.block {
+  @apply w-8 h-8 opacity-0 mix-blend-hard-light bg-softLime transition-colors duration-300;
+}
+.block:active {
+  @apply opacity-40;
+}
+
+/* PRICING */
+.package__card {
+  @apply flex flex-col gap-16 p-4 lg:p-8 rounded-[20px];
+  width: clamp(350px, 28vw, 530px);
+}
+#features-table {
+  @apply w-full;
+}
+.table__row {
+  @apply w-full;
+}
+
+/* FOOTER */
+.social__link {
+  @apply flex items-center justify-center rounded-full bg-codGray p-3 text-demoSmoke;
 }
